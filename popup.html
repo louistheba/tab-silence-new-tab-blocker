@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Tab Blocker</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="panel">
+      <p class="eyebrow">Tab Silence</p>
+      <h1>New Tab Blocker</h1>
+      <p class="site" id="siteLabel">Checking current page...</p>
+
+      <label class="toggle-card" for="blockToggle">
+        <input id="blockToggle" type="checkbox" />
+        <span class="toggle-visual" aria-hidden="true">
+          <span class="toggle-knob"></span>
+        </span>
+        <span class="toggle-copy">
+          <span class="toggle-title">Block new tabs on this site</span>
+          <span class="toggle-hint">Off by default. Saved per website on this browser.</span>
+        </span>
+      </label>
+      <p class="toggle-remark" id="toggleRemark" hidden>
+        *Refresh the website to restore its original behavior, or click the Restore button below.
+      </p>
+
+      <section class="signal-card" id="signalCard" data-variant="neutral" aria-label="Site signal">
+        <div class="signal-row">
+          <span class="signal-icon" id="signalIcon" aria-hidden="true"></span>
+          <div class="signal-copy">
+            <p class="status-label">Site Signal</p>
+            <p class="status-title" id="signalTitle">No auto-open new-tab behavior detected yet</p>
+            <p class="status-hint" id="signalHint">If this site tries it later, we will flag it here.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="metric-card" aria-label="Second layer block counter">
+        <p class="stat-label">2nd-Layer Block</p>
+        <p class="stat-value" id="lifetimeCount">0</p>
+        <p class="stat-note" id="metricNote">Lifetime count of tabs that the website tried to launch but were blocked by the 2nd layer.</p>
+      </section>
+
+      <button class="reload-button" id="reloadButton" type="button" hidden>Restore Website Settings</button>
+
+      <p class="status" id="statusText"></p>
+
+      <details class="debug-card" id="debugCard" hidden>
+        <summary>Recent Activity</summary>
+        <pre class="debug-log" id="debugLog"></pre>
+      </details>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

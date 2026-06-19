@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Silence: New Tab Blocker",
+  "version": "1.1.1",
+  "description": "Block auto-opened new tabs per website, with local-only settings and extra hardening when enabled.",
+  "permissions": [
+    "webNavigation",
+    "storage",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "New Tab Blocker",
+    "default_icon": {
+      "16": "icons/action-grey-16.png",
+      "32": "icons/action-grey-32.png",
+      "48": "icons/action-grey-48.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "page-script.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true,
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ]
+}
